@@ -1,0 +1,11 @@
+main()               
+entier d;           
+{
+  a = 1;
+  b = 2;
+  si(a!=b)alors{
+    ecrire(1);
+  }sinon{
+    ecrire(2);
+  }
+}

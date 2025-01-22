@@ -1,0 +1,22 @@
+main(){
+    #no need to declare
+    #calculate the pgcd of two numbers
+    a = 10;
+    b = 13;
+    tanque a > 0 & b > 0 faire{
+        si a < b alors {
+            b = b - a;
+        } sinon {
+            a = a - b;
+        }
+    }
+    si a == 0 alors{
+        ecrire(b);
+    }sinon{
+        ecrire(a);
+    }
+}
+
+
+
+

@@ -1,0 +1,11 @@
+main(){
+    a=0;
+    tanque a < 10 faire{
+        ecrire(1);
+    } 
+    si a == 2 alors{
+        ecrire(a);
+    }
+}
+
+

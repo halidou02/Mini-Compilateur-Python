@@ -1,0 +1,15 @@
+
+entier main()              
+entier d;           
+{
+  d = 4;   
+  ecrire(d);     
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+
+-_main()               
+entier a,b;           
+{
+  lire(a);
+  lire(b);
+  tantque b < 10 Alors
+  { 
+    ecrire(b);
+    b=b+1;
+  }   
+}
+
+
+
+
+
+
+
+

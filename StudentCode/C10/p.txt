@@ -1,0 +1,18 @@
+add(entier a,entier a[]){
+
+    a = 1;
+    b = 2;
+    ecrire(a);
+    tantque a <= 1 faire {
+        si a < b & a > b | a==b alors{
+            ecrire(1);
+        }sinon {
+            ecrire(-2);
+        }  
+        a = a + 1;
+    }
+    #retour a;
+}
+main(){
+  add('qfdq a');
+}

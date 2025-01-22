@@ -1,0 +1,17 @@
+
+main()               
+entier a,b;           
+{
+  lire(a);
+  lire(b);
+  a ~= (a+ b);       
+  ecrire(a);     
+}
+
+
+
+
+
+
+
+

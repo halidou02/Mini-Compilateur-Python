@@ -1,0 +1,18 @@
+main()               
+entier a,b;           
+{
+  lire(a);
+  lire(b);
+  si b == 3 alors
+  { a=0;}
+  sinon {a=1;}
+        
+  ecrire(a);     
+}
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+main(){
+    a = 0;
+    si a==0 alors{
+        ecrire(a);
+    } sinon {
+        ecrire('wsuuup');
+    }
+    a = 1;
+}
+
+
+

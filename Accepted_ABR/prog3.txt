@@ -1,0 +1,12 @@
+main(){
+    lire(a);
+    a = a + 1;
+    si a == 1 alors {
+        ecrire(a);
+    } sinon {
+        ecrire(a);
+    }
+}
+
+
+

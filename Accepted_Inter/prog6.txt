@@ -1,0 +1,14 @@
+main()               
+entier a,b;           
+{
+  a = 7;
+  ecrire(a);
+}
+
+
+
+
+
+
+
+

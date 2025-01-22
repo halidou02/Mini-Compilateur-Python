@@ -1,0 +1,2310 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programme
+Rule 1     programme -> functions
+Rule 2     functions -> function functions
+Rule 3     functions -> function_main
+Rule 4     function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+Rule 5     function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+Rule 6     function_main -> idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+Rule 7     function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+Rule 8     identifiant -> ID
+Rule 9     idmain -> MAIN
+Rule 10    type -> ENTIER
+Rule 11    arguments -> argument
+Rule 12    arguments -> EPSILON
+Rule 13    argument -> ENTIER ID
+Rule 14    argument -> ENTIER ID COMMA argument
+Rule 15    argument -> ENTIER ID LCROCHET RCROCHET
+Rule 16    argument -> ENTIER ID LCROCHET RCROCHET argument
+Rule 17    argument -> number
+Rule 18    argument -> number COMMA argument
+Rule 19    EPSILON -> <empty>
+Rule 20    declarations -> declaration
+Rule 21    declarations -> EPSILON
+Rule 22    declaration -> ENTIER list_var ENDLINE
+Rule 23    declaration -> ENTIER ID
+Rule 24    declaration -> ENTIER ID COMMA declaration
+Rule 25    declaration -> ENTIER ID LCROCHET RCROCHET
+Rule 26    declaration -> ENTIER ID LCROCHET RCROCHET declaration
+Rule 27    list_var -> ID
+Rule 28    list_var -> ID COMMA list_var
+Rule 29    list_var -> ID LCROCHET RCROCHET
+Rule 30    list_var -> ID LCROCHET RCROCHET COMMA list_var
+Rule 31    bodyexp -> expressions
+Rule 32    roteurexp -> RETOUR expression_op ENDLINE
+Rule 33    expressions -> expression expressions
+Rule 34    expressions -> expression_fcall
+Rule 35    expressions -> EPSILON
+Rule 36    expression -> ID AFFECT expression_fcall
+Rule 37    expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+Rule 38    expression -> ID AFFECT expression_op ENDLINE
+Rule 39    expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+Rule 40    expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+Rule 41    expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+Rule 42    expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+Rule 43    expression -> LIRE LPAREN identifiant RPAREN ENDLINE
+Rule 44    expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE
+Rule 45    expression -> ECRIRE LPAREN string_id RPAREN ENDLINE
+Rule 46    string_id -> STRING
+Rule 47    expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE
+Rule 48    expression_fcall -> ID LPAREN string_id RPAREN ENDLINE
+Rule 49    expression_fcall -> ID LPAREN RPAREN ENDLINE
+Rule 50    expression_op -> expression_op ADD_OP expression_op
+Rule 51    expression_op -> expression_op MUL_OP expression_op
+Rule 52    expression_op -> comparison_op
+Rule 53    comparison_op -> expression_op LOGC_OP expression_op
+Rule 54    comparison_op -> LPAREN comparison_op RPAREN
+Rule 55    expression_op -> ID COMMA expression_op
+Rule 56    expression_op -> number COMMA expression_op
+Rule 57    expression_op -> ID
+Rule 58    expression_op -> number
+Rule 59    expression_op -> LPAREN expression_op RPAREN
+Rule 60    number -> ADD_OP NUMBER
+Rule 61    number -> NUMBER
+
+Terminals, with rules where they appear
+
+ADD_OP               : 50 60
+AFFECT               : 36 37 38 39
+ALORS                : 40 41
+COMMA                : 14 18 24 28 30 55 56
+ECRIRE               : 44 45
+ENDLINE              : 22 32 38 39 43 44 45 47 48 49
+ENTIER               : 10 13 14 15 16 22 23 24 25 26
+FAIRE                : 42
+ID                   : 8 13 14 15 16 23 24 25 26 27 28 29 30 36 37 38 39 47 48 49 55 57
+LCROCHET             : 15 16 25 26 29 30 37 39
+LIRE                 : 43
+LOGC_OP              : 53
+LPAREN               : 4 5 6 7 43 44 45 47 48 49 54 59
+LSEPARATEUR          : 4 5 6 7 40 40 41 42
+MAIN                 : 9
+MUL_OP               : 51
+NUMBER               : 60 61
+RCROCHET             : 15 16 25 26 29 30 37 39
+RETOUR               : 32
+RPAREN               : 4 5 6 7 43 44 45 47 48 49 54 59
+RSEPARATEUR          : 4 5 6 7 40 40 41 42
+SI                   : 40 41
+SINON                : 40
+STRING               : 46
+TANTQUE              : 42
+error                : 
+
+Nonterminals, with rules where they appear
+
+EPSILON              : 12 21 35
+argument             : 11 14 16 18
+arguments            : 4 5
+bodyexp              : 4 5 6 7
+comparison_op        : 40 41 42 52 54
+declaration          : 20 24 26
+declarations         : 4 5 6 7
+expression           : 33
+expression_fcall     : 34 36 37
+expression_op        : 32 37 38 39 39 44 47 50 50 51 51 53 53 55 56 59
+expressions          : 31 33 40 40 41 42
+function             : 2
+function_main        : 3
+functions            : 1 2
+identifiant          : 4 5 43
+idmain               : 6 7
+list_var             : 22 28 30
+number               : 17 18 56 58
+programme            : 0
+roteurexp            : 5 7
+string_id            : 45 48
+type                 : 5 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programme
+    (1) programme -> . functions
+    (2) functions -> . function functions
+    (3) functions -> . function_main
+    (4) function -> . identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (5) function -> . type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (6) function_main -> . idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (7) function_main -> . type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (8) identifiant -> . ID
+    (10) type -> . ENTIER
+    (9) idmain -> . MAIN
+
+    ID              shift and go to state 8
+    ENTIER          shift and go to state 9
+    MAIN            shift and go to state 10
+
+    programme                      shift and go to state 1
+    functions                      shift and go to state 2
+    function                       shift and go to state 3
+    function_main                  shift and go to state 4
+    identifiant                    shift and go to state 5
+    type                           shift and go to state 6
+    idmain                         shift and go to state 7
+
+state 1
+
+    (0) S' -> programme .
+
+
+
+state 2
+
+    (1) programme -> functions .
+
+    $end            reduce using rule 1 (programme -> functions .)
+
+
+state 3
+
+    (2) functions -> function . functions
+    (2) functions -> . function functions
+    (3) functions -> . function_main
+    (4) function -> . identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (5) function -> . type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (6) function_main -> . idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (7) function_main -> . type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (8) identifiant -> . ID
+    (10) type -> . ENTIER
+    (9) idmain -> . MAIN
+
+    ID              shift and go to state 8
+    ENTIER          shift and go to state 9
+    MAIN            shift and go to state 10
+
+    function                       shift and go to state 3
+    functions                      shift and go to state 11
+    function_main                  shift and go to state 4
+    identifiant                    shift and go to state 5
+    type                           shift and go to state 6
+    idmain                         shift and go to state 7
+
+state 4
+
+    (3) functions -> function_main .
+
+    $end            reduce using rule 3 (functions -> function_main .)
+
+
+state 5
+
+    (4) function -> identifiant . LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+
+    LPAREN          shift and go to state 12
+
+
+state 6
+
+    (5) function -> type . identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (7) function_main -> type . idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (8) identifiant -> . ID
+    (9) idmain -> . MAIN
+
+    ID              shift and go to state 8
+    MAIN            shift and go to state 10
+
+    identifiant                    shift and go to state 13
+    idmain                         shift and go to state 14
+
+state 7
+
+    (6) function_main -> idmain . LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+
+    LPAREN          shift and go to state 15
+
+
+state 8
+
+    (8) identifiant -> ID .
+
+    LPAREN          reduce using rule 8 (identifiant -> ID .)
+    RPAREN          reduce using rule 8 (identifiant -> ID .)
+
+
+state 9
+
+    (10) type -> ENTIER .
+
+    ID              reduce using rule 10 (type -> ENTIER .)
+    MAIN            reduce using rule 10 (type -> ENTIER .)
+
+
+state 10
+
+    (9) idmain -> MAIN .
+
+    LPAREN          reduce using rule 9 (idmain -> MAIN .)
+
+
+state 11
+
+    (2) functions -> function functions .
+
+    $end            reduce using rule 2 (functions -> function functions .)
+
+
+state 12
+
+    (4) function -> identifiant LPAREN . arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (11) arguments -> . argument
+    (12) arguments -> . EPSILON
+    (13) argument -> . ENTIER ID
+    (14) argument -> . ENTIER ID COMMA argument
+    (15) argument -> . ENTIER ID LCROCHET RCROCHET
+    (16) argument -> . ENTIER ID LCROCHET RCROCHET argument
+    (17) argument -> . number
+    (18) argument -> . number COMMA argument
+    (19) EPSILON -> .
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ENTIER          shift and go to state 19
+    RPAREN          reduce using rule 19 (EPSILON -> .)
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    arguments                      shift and go to state 16
+    argument                       shift and go to state 17
+    EPSILON                        shift and go to state 18
+    number                         shift and go to state 20
+
+state 13
+
+    (5) function -> type identifiant . LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    LPAREN          shift and go to state 23
+
+
+state 14
+
+    (7) function_main -> type idmain . LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    LPAREN          shift and go to state 24
+
+
+state 15
+
+    (6) function_main -> idmain LPAREN . RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+
+    RPAREN          shift and go to state 25
+
+
+state 16
+
+    (4) function -> identifiant LPAREN arguments . RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR
+
+    RPAREN          shift and go to state 26
+
+
+state 17
+
+    (11) arguments -> argument .
+
+    RPAREN          reduce using rule 11 (arguments -> argument .)
+
+
+state 18
+
+    (12) arguments -> EPSILON .
+
+    RPAREN          reduce using rule 12 (arguments -> EPSILON .)
+
+
+state 19
+
+    (13) argument -> ENTIER . ID
+    (14) argument -> ENTIER . ID COMMA argument
+    (15) argument -> ENTIER . ID LCROCHET RCROCHET
+    (16) argument -> ENTIER . ID LCROCHET RCROCHET argument
+
+    ID              shift and go to state 27
+
+
+state 20
+
+    (17) argument -> number .
+    (18) argument -> number . COMMA argument
+
+    RPAREN          reduce using rule 17 (argument -> number .)
+    COMMA           shift and go to state 28
+
+
+state 21
+
+    (60) number -> ADD_OP . NUMBER
+
+    NUMBER          shift and go to state 29
+
+
+state 22
+
+    (61) number -> NUMBER .
+
+    COMMA           reduce using rule 61 (number -> NUMBER .)
+    RPAREN          reduce using rule 61 (number -> NUMBER .)
+    LOGC_OP         reduce using rule 61 (number -> NUMBER .)
+    ADD_OP          reduce using rule 61 (number -> NUMBER .)
+    MUL_OP          reduce using rule 61 (number -> NUMBER .)
+    ENDLINE         reduce using rule 61 (number -> NUMBER .)
+    RCROCHET        reduce using rule 61 (number -> NUMBER .)
+    ALORS           reduce using rule 61 (number -> NUMBER .)
+    FAIRE           reduce using rule 61 (number -> NUMBER .)
+
+
+state 23
+
+    (5) function -> type identifiant LPAREN . arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (11) arguments -> . argument
+    (12) arguments -> . EPSILON
+    (13) argument -> . ENTIER ID
+    (14) argument -> . ENTIER ID COMMA argument
+    (15) argument -> . ENTIER ID LCROCHET RCROCHET
+    (16) argument -> . ENTIER ID LCROCHET RCROCHET argument
+    (17) argument -> . number
+    (18) argument -> . number COMMA argument
+    (19) EPSILON -> .
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ENTIER          shift and go to state 19
+    RPAREN          reduce using rule 19 (EPSILON -> .)
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    arguments                      shift and go to state 30
+    argument                       shift and go to state 17
+    EPSILON                        shift and go to state 18
+    number                         shift and go to state 20
+
+state 24
+
+    (7) function_main -> type idmain LPAREN . RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    RPAREN          shift and go to state 31
+
+
+state 25
+
+    (6) function_main -> idmain LPAREN RPAREN . declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (20) declarations -> . declaration
+    (21) declarations -> . EPSILON
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+    (19) EPSILON -> .
+
+    ENTIER          shift and go to state 35
+    LSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    declarations                   shift and go to state 32
+    declaration                    shift and go to state 33
+    EPSILON                        shift and go to state 34
+
+state 26
+
+    (4) function -> identifiant LPAREN arguments RPAREN . declarations LSEPARATEUR bodyexp RSEPARATEUR
+    (20) declarations -> . declaration
+    (21) declarations -> . EPSILON
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+    (19) EPSILON -> .
+
+    ENTIER          shift and go to state 35
+    LSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    declarations                   shift and go to state 36
+    declaration                    shift and go to state 33
+    EPSILON                        shift and go to state 34
+
+state 27
+
+    (13) argument -> ENTIER ID .
+    (14) argument -> ENTIER ID . COMMA argument
+    (15) argument -> ENTIER ID . LCROCHET RCROCHET
+    (16) argument -> ENTIER ID . LCROCHET RCROCHET argument
+
+    RPAREN          reduce using rule 13 (argument -> ENTIER ID .)
+    COMMA           shift and go to state 37
+    LCROCHET        shift and go to state 38
+
+
+state 28
+
+    (18) argument -> number COMMA . argument
+    (13) argument -> . ENTIER ID
+    (14) argument -> . ENTIER ID COMMA argument
+    (15) argument -> . ENTIER ID LCROCHET RCROCHET
+    (16) argument -> . ENTIER ID LCROCHET RCROCHET argument
+    (17) argument -> . number
+    (18) argument -> . number COMMA argument
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ENTIER          shift and go to state 19
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    number                         shift and go to state 20
+    argument                       shift and go to state 39
+
+state 29
+
+    (60) number -> ADD_OP NUMBER .
+
+    COMMA           reduce using rule 60 (number -> ADD_OP NUMBER .)
+    RPAREN          reduce using rule 60 (number -> ADD_OP NUMBER .)
+    LOGC_OP         reduce using rule 60 (number -> ADD_OP NUMBER .)
+    ADD_OP          reduce using rule 60 (number -> ADD_OP NUMBER .)
+    MUL_OP          reduce using rule 60 (number -> ADD_OP NUMBER .)
+    ENDLINE         reduce using rule 60 (number -> ADD_OP NUMBER .)
+    RCROCHET        reduce using rule 60 (number -> ADD_OP NUMBER .)
+    ALORS           reduce using rule 60 (number -> ADD_OP NUMBER .)
+    FAIRE           reduce using rule 60 (number -> ADD_OP NUMBER .)
+
+
+state 30
+
+    (5) function -> type identifiant LPAREN arguments . RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    RPAREN          shift and go to state 40
+
+
+state 31
+
+    (7) function_main -> type idmain LPAREN RPAREN . declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (20) declarations -> . declaration
+    (21) declarations -> . EPSILON
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+    (19) EPSILON -> .
+
+    ENTIER          shift and go to state 35
+    LSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    declarations                   shift and go to state 41
+    declaration                    shift and go to state 33
+    EPSILON                        shift and go to state 34
+
+state 32
+
+    (6) function_main -> idmain LPAREN RPAREN declarations . LSEPARATEUR bodyexp RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 42
+
+
+state 33
+
+    (20) declarations -> declaration .
+
+    LSEPARATEUR     reduce using rule 20 (declarations -> declaration .)
+
+
+state 34
+
+    (21) declarations -> EPSILON .
+
+    LSEPARATEUR     reduce using rule 21 (declarations -> EPSILON .)
+
+
+state 35
+
+    (22) declaration -> ENTIER . list_var ENDLINE
+    (23) declaration -> ENTIER . ID
+    (24) declaration -> ENTIER . ID COMMA declaration
+    (25) declaration -> ENTIER . ID LCROCHET RCROCHET
+    (26) declaration -> ENTIER . ID LCROCHET RCROCHET declaration
+    (27) list_var -> . ID
+    (28) list_var -> . ID COMMA list_var
+    (29) list_var -> . ID LCROCHET RCROCHET
+    (30) list_var -> . ID LCROCHET RCROCHET COMMA list_var
+
+    ID              shift and go to state 44
+
+    list_var                       shift and go to state 43
+
+state 36
+
+    (4) function -> identifiant LPAREN arguments RPAREN declarations . LSEPARATEUR bodyexp RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 45
+
+
+state 37
+
+    (14) argument -> ENTIER ID COMMA . argument
+    (13) argument -> . ENTIER ID
+    (14) argument -> . ENTIER ID COMMA argument
+    (15) argument -> . ENTIER ID LCROCHET RCROCHET
+    (16) argument -> . ENTIER ID LCROCHET RCROCHET argument
+    (17) argument -> . number
+    (18) argument -> . number COMMA argument
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ENTIER          shift and go to state 19
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    argument                       shift and go to state 46
+    number                         shift and go to state 20
+
+state 38
+
+    (15) argument -> ENTIER ID LCROCHET . RCROCHET
+    (16) argument -> ENTIER ID LCROCHET . RCROCHET argument
+
+    RCROCHET        shift and go to state 47
+
+
+state 39
+
+    (18) argument -> number COMMA argument .
+
+    RPAREN          reduce using rule 18 (argument -> number COMMA argument .)
+
+
+state 40
+
+    (5) function -> type identifiant LPAREN arguments RPAREN . declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+    (20) declarations -> . declaration
+    (21) declarations -> . EPSILON
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+    (19) EPSILON -> .
+
+    ENTIER          shift and go to state 35
+    LSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    declarations                   shift and go to state 48
+    declaration                    shift and go to state 33
+    EPSILON                        shift and go to state 34
+
+state 41
+
+    (7) function_main -> type idmain LPAREN RPAREN declarations . LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 49
+
+
+state 42
+
+    (6) function_main -> idmain LPAREN RPAREN declarations LSEPARATEUR . bodyexp RSEPARATEUR
+    (31) bodyexp -> . expressions
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    bodyexp                        shift and go to state 50
+    expressions                    shift and go to state 51
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 43
+
+    (22) declaration -> ENTIER list_var . ENDLINE
+
+    ENDLINE         shift and go to state 60
+
+
+state 44
+
+    (23) declaration -> ENTIER ID .
+    (24) declaration -> ENTIER ID . COMMA declaration
+    (25) declaration -> ENTIER ID . LCROCHET RCROCHET
+    (26) declaration -> ENTIER ID . LCROCHET RCROCHET declaration
+    (27) list_var -> ID .
+    (28) list_var -> ID . COMMA list_var
+    (29) list_var -> ID . LCROCHET RCROCHET
+    (30) list_var -> ID . LCROCHET RCROCHET COMMA list_var
+
+    LSEPARATEUR     reduce using rule 23 (declaration -> ENTIER ID .)
+    COMMA           shift and go to state 61
+    LCROCHET        shift and go to state 62
+    ENDLINE         reduce using rule 27 (list_var -> ID .)
+
+
+state 45
+
+    (4) function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR . bodyexp RSEPARATEUR
+    (31) bodyexp -> . expressions
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    bodyexp                        shift and go to state 63
+    expressions                    shift and go to state 51
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 46
+
+    (14) argument -> ENTIER ID COMMA argument .
+
+    RPAREN          reduce using rule 14 (argument -> ENTIER ID COMMA argument .)
+
+
+state 47
+
+    (15) argument -> ENTIER ID LCROCHET RCROCHET .
+    (16) argument -> ENTIER ID LCROCHET RCROCHET . argument
+    (13) argument -> . ENTIER ID
+    (14) argument -> . ENTIER ID COMMA argument
+    (15) argument -> . ENTIER ID LCROCHET RCROCHET
+    (16) argument -> . ENTIER ID LCROCHET RCROCHET argument
+    (17) argument -> . number
+    (18) argument -> . number COMMA argument
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    RPAREN          reduce using rule 15 (argument -> ENTIER ID LCROCHET RCROCHET .)
+    ENTIER          shift and go to state 19
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    argument                       shift and go to state 64
+    number                         shift and go to state 20
+
+state 48
+
+    (5) function -> type identifiant LPAREN arguments RPAREN declarations . LSEPARATEUR bodyexp roteurexp RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 65
+
+
+state 49
+
+    (7) function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR . bodyexp roteurexp RSEPARATEUR
+    (31) bodyexp -> . expressions
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RETOUR          reduce using rule 19 (EPSILON -> .)
+
+    bodyexp                        shift and go to state 66
+    expressions                    shift and go to state 51
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 50
+
+    (6) function_main -> idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 67
+
+
+state 51
+
+    (31) bodyexp -> expressions .
+
+    RSEPARATEUR     reduce using rule 31 (bodyexp -> expressions .)
+    RETOUR          reduce using rule 31 (bodyexp -> expressions .)
+
+
+state 52
+
+    (33) expressions -> expression . expressions
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+    RETOUR          reduce using rule 19 (EPSILON -> .)
+
+    expression                     shift and go to state 52
+    expressions                    shift and go to state 68
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 53
+
+    (34) expressions -> expression_fcall .
+
+    RSEPARATEUR     reduce using rule 34 (expressions -> expression_fcall .)
+    RETOUR          reduce using rule 34 (expressions -> expression_fcall .)
+
+
+state 54
+
+    (35) expressions -> EPSILON .
+
+    RSEPARATEUR     reduce using rule 35 (expressions -> EPSILON .)
+    RETOUR          reduce using rule 35 (expressions -> EPSILON .)
+
+
+state 55
+
+    (36) expression -> ID . AFFECT expression_fcall
+    (37) expression -> ID . LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> ID . AFFECT expression_op ENDLINE
+    (39) expression -> ID . LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (47) expression_fcall -> ID . LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> ID . LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> ID . LPAREN RPAREN ENDLINE
+
+    AFFECT          shift and go to state 69
+    LCROCHET        shift and go to state 70
+    LPAREN          shift and go to state 71
+
+
+state 56
+
+    (40) expression -> SI . comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI . comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    LPAREN          shift and go to state 74
+    ID              shift and go to state 75
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    comparison_op                  shift and go to state 72
+    expression_op                  shift and go to state 73
+    number                         shift and go to state 76
+
+state 57
+
+    (42) expression -> TANTQUE . comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    LPAREN          shift and go to state 74
+    ID              shift and go to state 75
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    comparison_op                  shift and go to state 77
+    expression_op                  shift and go to state 73
+    number                         shift and go to state 76
+
+state 58
+
+    (43) expression -> LIRE . LPAREN identifiant RPAREN ENDLINE
+
+    LPAREN          shift and go to state 78
+
+
+state 59
+
+    (44) expression -> ECRIRE . LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> ECRIRE . LPAREN string_id RPAREN ENDLINE
+
+    LPAREN          shift and go to state 79
+
+
+state 60
+
+    (22) declaration -> ENTIER list_var ENDLINE .
+
+    LSEPARATEUR     reduce using rule 22 (declaration -> ENTIER list_var ENDLINE .)
+
+
+state 61
+
+    (24) declaration -> ENTIER ID COMMA . declaration
+    (28) list_var -> ID COMMA . list_var
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+    (27) list_var -> . ID
+    (28) list_var -> . ID COMMA list_var
+    (29) list_var -> . ID LCROCHET RCROCHET
+    (30) list_var -> . ID LCROCHET RCROCHET COMMA list_var
+
+    ENTIER          shift and go to state 35
+    ID              shift and go to state 80
+
+    declaration                    shift and go to state 81
+    list_var                       shift and go to state 82
+
+state 62
+
+    (25) declaration -> ENTIER ID LCROCHET . RCROCHET
+    (26) declaration -> ENTIER ID LCROCHET . RCROCHET declaration
+    (29) list_var -> ID LCROCHET . RCROCHET
+    (30) list_var -> ID LCROCHET . RCROCHET COMMA list_var
+
+    RCROCHET        shift and go to state 83
+
+
+state 63
+
+    (4) function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 84
+
+
+state 64
+
+    (16) argument -> ENTIER ID LCROCHET RCROCHET argument .
+
+    RPAREN          reduce using rule 16 (argument -> ENTIER ID LCROCHET RCROCHET argument .)
+
+
+state 65
+
+    (5) function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR . bodyexp roteurexp RSEPARATEUR
+    (31) bodyexp -> . expressions
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RETOUR          reduce using rule 19 (EPSILON -> .)
+
+    bodyexp                        shift and go to state 85
+    expressions                    shift and go to state 51
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 66
+
+    (7) function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp . roteurexp RSEPARATEUR
+    (32) roteurexp -> . RETOUR expression_op ENDLINE
+
+    RETOUR          shift and go to state 87
+
+    roteurexp                      shift and go to state 86
+
+state 67
+
+    (6) function_main -> idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .
+
+    $end            reduce using rule 6 (function_main -> idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .)
+
+
+state 68
+
+    (33) expressions -> expression expressions .
+
+    RSEPARATEUR     reduce using rule 33 (expressions -> expression expressions .)
+    RETOUR          reduce using rule 33 (expressions -> expression expressions .)
+
+
+state 69
+
+    (36) expression -> ID AFFECT . expression_fcall
+    (38) expression -> ID AFFECT . expression_op ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 88
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_fcall               shift and go to state 89
+    expression_op                  shift and go to state 90
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 70
+
+    (37) expression -> ID LCROCHET . expression_op RCROCHET AFFECT expression_fcall
+    (39) expression -> ID LCROCHET . expression_op RCROCHET AFFECT expression_op ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 93
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 71
+
+    (47) expression_fcall -> ID LPAREN . expression_op RPAREN ENDLINE
+    (48) expression_fcall -> ID LPAREN . string_id RPAREN ENDLINE
+    (49) expression_fcall -> ID LPAREN . RPAREN ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (46) string_id -> . STRING
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    RPAREN          shift and go to state 95
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    STRING          shift and go to state 97
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 94
+    string_id                      shift and go to state 96
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 72
+
+    (40) expression -> SI comparison_op . ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI comparison_op . ALORS LSEPARATEUR expressions RSEPARATEUR
+    (52) expression_op -> comparison_op .
+
+    ALORS           shift and go to state 98
+    LOGC_OP         reduce using rule 52 (expression_op -> comparison_op .)
+    ADD_OP          reduce using rule 52 (expression_op -> comparison_op .)
+    MUL_OP          reduce using rule 52 (expression_op -> comparison_op .)
+
+
+state 73
+
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+
+    LOGC_OP         shift and go to state 99
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+
+
+state 74
+
+    (54) comparison_op -> LPAREN . comparison_op RPAREN
+    (59) expression_op -> LPAREN . expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    LPAREN          shift and go to state 74
+    ID              shift and go to state 75
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    comparison_op                  shift and go to state 102
+    expression_op                  shift and go to state 103
+    number                         shift and go to state 76
+
+state 75
+
+    (55) expression_op -> ID . COMMA expression_op
+    (57) expression_op -> ID .
+
+    COMMA           shift and go to state 104
+    LOGC_OP         reduce using rule 57 (expression_op -> ID .)
+    ADD_OP          reduce using rule 57 (expression_op -> ID .)
+    MUL_OP          reduce using rule 57 (expression_op -> ID .)
+    RCROCHET        reduce using rule 57 (expression_op -> ID .)
+    RPAREN          reduce using rule 57 (expression_op -> ID .)
+    ENDLINE         reduce using rule 57 (expression_op -> ID .)
+    ALORS           reduce using rule 57 (expression_op -> ID .)
+    FAIRE           reduce using rule 57 (expression_op -> ID .)
+
+
+state 76
+
+    (56) expression_op -> number . COMMA expression_op
+    (58) expression_op -> number .
+
+    COMMA           shift and go to state 105
+    LOGC_OP         reduce using rule 58 (expression_op -> number .)
+    ADD_OP          reduce using rule 58 (expression_op -> number .)
+    MUL_OP          reduce using rule 58 (expression_op -> number .)
+    ENDLINE         reduce using rule 58 (expression_op -> number .)
+    RCROCHET        reduce using rule 58 (expression_op -> number .)
+    RPAREN          reduce using rule 58 (expression_op -> number .)
+    ALORS           reduce using rule 58 (expression_op -> number .)
+    FAIRE           reduce using rule 58 (expression_op -> number .)
+
+
+state 77
+
+    (42) expression -> TANTQUE comparison_op . FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (52) expression_op -> comparison_op .
+
+    FAIRE           shift and go to state 106
+    LOGC_OP         reduce using rule 52 (expression_op -> comparison_op .)
+    ADD_OP          reduce using rule 52 (expression_op -> comparison_op .)
+    MUL_OP          reduce using rule 52 (expression_op -> comparison_op .)
+
+
+state 78
+
+    (43) expression -> LIRE LPAREN . identifiant RPAREN ENDLINE
+    (8) identifiant -> . ID
+
+    ID              shift and go to state 8
+
+    identifiant                    shift and go to state 107
+
+state 79
+
+    (44) expression -> ECRIRE LPAREN . expression_op RPAREN ENDLINE
+    (45) expression -> ECRIRE LPAREN . string_id RPAREN ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (46) string_id -> . STRING
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    STRING          shift and go to state 97
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 108
+    string_id                      shift and go to state 109
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 80
+
+    (27) list_var -> ID .
+    (28) list_var -> ID . COMMA list_var
+    (29) list_var -> ID . LCROCHET RCROCHET
+    (30) list_var -> ID . LCROCHET RCROCHET COMMA list_var
+
+    ENDLINE         reduce using rule 27 (list_var -> ID .)
+    COMMA           shift and go to state 110
+    LCROCHET        shift and go to state 111
+
+
+state 81
+
+    (24) declaration -> ENTIER ID COMMA declaration .
+
+    LSEPARATEUR     reduce using rule 24 (declaration -> ENTIER ID COMMA declaration .)
+
+
+state 82
+
+    (28) list_var -> ID COMMA list_var .
+
+    ENDLINE         reduce using rule 28 (list_var -> ID COMMA list_var .)
+
+
+state 83
+
+    (25) declaration -> ENTIER ID LCROCHET RCROCHET .
+    (26) declaration -> ENTIER ID LCROCHET RCROCHET . declaration
+    (29) list_var -> ID LCROCHET RCROCHET .
+    (30) list_var -> ID LCROCHET RCROCHET . COMMA list_var
+    (22) declaration -> . ENTIER list_var ENDLINE
+    (23) declaration -> . ENTIER ID
+    (24) declaration -> . ENTIER ID COMMA declaration
+    (25) declaration -> . ENTIER ID LCROCHET RCROCHET
+    (26) declaration -> . ENTIER ID LCROCHET RCROCHET declaration
+
+    LSEPARATEUR     reduce using rule 25 (declaration -> ENTIER ID LCROCHET RCROCHET .)
+    ENDLINE         reduce using rule 29 (list_var -> ID LCROCHET RCROCHET .)
+    COMMA           shift and go to state 113
+    ENTIER          shift and go to state 35
+
+    declaration                    shift and go to state 112
+
+state 84
+
+    (4) function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .
+
+    ID              reduce using rule 4 (function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .)
+    ENTIER          reduce using rule 4 (function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .)
+    MAIN            reduce using rule 4 (function -> identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp RSEPARATEUR .)
+
+
+state 85
+
+    (5) function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp . roteurexp RSEPARATEUR
+    (32) roteurexp -> . RETOUR expression_op ENDLINE
+
+    RETOUR          shift and go to state 87
+
+    roteurexp                      shift and go to state 114
+
+state 86
+
+    (7) function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 115
+
+
+state 87
+
+    (32) roteurexp -> RETOUR . expression_op ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 116
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 88
+
+    (47) expression_fcall -> ID . LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> ID . LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> ID . LPAREN RPAREN ENDLINE
+    (55) expression_op -> ID . COMMA expression_op
+    (57) expression_op -> ID .
+
+    LPAREN          shift and go to state 71
+    COMMA           shift and go to state 104
+    ENDLINE         reduce using rule 57 (expression_op -> ID .)
+    ADD_OP          reduce using rule 57 (expression_op -> ID .)
+    MUL_OP          reduce using rule 57 (expression_op -> ID .)
+    LOGC_OP         reduce using rule 57 (expression_op -> ID .)
+
+
+state 89
+
+    (36) expression -> ID AFFECT expression_fcall .
+
+    ID              reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    SI              reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    TANTQUE         reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    LIRE            reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    ECRIRE          reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    RSEPARATEUR     reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+    RETOUR          reduce using rule 36 (expression -> ID AFFECT expression_fcall .)
+
+
+state 90
+
+    (38) expression -> ID AFFECT expression_op . ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    ENDLINE         shift and go to state 117
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 91
+
+    (59) expression_op -> LPAREN . expression_op RPAREN
+    (54) comparison_op -> LPAREN . comparison_op RPAREN
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 118
+    comparison_op                  shift and go to state 102
+    number                         shift and go to state 76
+
+state 92
+
+    (52) expression_op -> comparison_op .
+
+    ENDLINE         reduce using rule 52 (expression_op -> comparison_op .)
+    ADD_OP          reduce using rule 52 (expression_op -> comparison_op .)
+    MUL_OP          reduce using rule 52 (expression_op -> comparison_op .)
+    LOGC_OP         reduce using rule 52 (expression_op -> comparison_op .)
+    RCROCHET        reduce using rule 52 (expression_op -> comparison_op .)
+    RPAREN          reduce using rule 52 (expression_op -> comparison_op .)
+    ALORS           reduce using rule 52 (expression_op -> comparison_op .)
+    FAIRE           reduce using rule 52 (expression_op -> comparison_op .)
+
+
+state 93
+
+    (37) expression -> ID LCROCHET expression_op . RCROCHET AFFECT expression_fcall
+    (39) expression -> ID LCROCHET expression_op . RCROCHET AFFECT expression_op ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    RCROCHET        shift and go to state 119
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 94
+
+    (47) expression_fcall -> ID LPAREN expression_op . RPAREN ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    RPAREN          shift and go to state 120
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 95
+
+    (49) expression_fcall -> ID LPAREN RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 121
+
+
+state 96
+
+    (48) expression_fcall -> ID LPAREN string_id . RPAREN ENDLINE
+
+    RPAREN          shift and go to state 122
+
+
+state 97
+
+    (46) string_id -> STRING .
+
+    RPAREN          reduce using rule 46 (string_id -> STRING .)
+
+
+state 98
+
+    (40) expression -> SI comparison_op ALORS . LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI comparison_op ALORS . LSEPARATEUR expressions RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 123
+
+
+state 99
+
+    (53) comparison_op -> expression_op LOGC_OP . expression_op
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 124
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 100
+
+    (50) expression_op -> expression_op ADD_OP . expression_op
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 125
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 101
+
+    (51) expression_op -> expression_op MUL_OP . expression_op
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 126
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 102
+
+    (54) comparison_op -> LPAREN comparison_op . RPAREN
+    (52) expression_op -> comparison_op .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 127
+    LOGC_OP         reduce using rule 52 (expression_op -> comparison_op .)
+    ADD_OP          reduce using rule 52 (expression_op -> comparison_op .)
+    MUL_OP          reduce using rule 52 (expression_op -> comparison_op .)
+
+  ! RPAREN          [ reduce using rule 52 (expression_op -> comparison_op .) ]
+
+
+state 103
+
+    (59) expression_op -> LPAREN expression_op . RPAREN
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+
+    RPAREN          shift and go to state 128
+    LOGC_OP         shift and go to state 99
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+
+
+state 104
+
+    (55) expression_op -> ID COMMA . expression_op
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 129
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 105
+
+    (56) expression_op -> number COMMA . expression_op
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 75
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    number                         shift and go to state 76
+    expression_op                  shift and go to state 130
+    comparison_op                  shift and go to state 92
+
+state 106
+
+    (42) expression -> TANTQUE comparison_op FAIRE . LSEPARATEUR expressions RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 131
+
+
+state 107
+
+    (43) expression -> LIRE LPAREN identifiant . RPAREN ENDLINE
+
+    RPAREN          shift and go to state 132
+
+
+state 108
+
+    (44) expression -> ECRIRE LPAREN expression_op . RPAREN ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    RPAREN          shift and go to state 133
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 109
+
+    (45) expression -> ECRIRE LPAREN string_id . RPAREN ENDLINE
+
+    RPAREN          shift and go to state 134
+
+
+state 110
+
+    (28) list_var -> ID COMMA . list_var
+    (27) list_var -> . ID
+    (28) list_var -> . ID COMMA list_var
+    (29) list_var -> . ID LCROCHET RCROCHET
+    (30) list_var -> . ID LCROCHET RCROCHET COMMA list_var
+
+    ID              shift and go to state 80
+
+    list_var                       shift and go to state 82
+
+state 111
+
+    (29) list_var -> ID LCROCHET . RCROCHET
+    (30) list_var -> ID LCROCHET . RCROCHET COMMA list_var
+
+    RCROCHET        shift and go to state 135
+
+
+state 112
+
+    (26) declaration -> ENTIER ID LCROCHET RCROCHET declaration .
+
+    LSEPARATEUR     reduce using rule 26 (declaration -> ENTIER ID LCROCHET RCROCHET declaration .)
+
+
+state 113
+
+    (30) list_var -> ID LCROCHET RCROCHET COMMA . list_var
+    (27) list_var -> . ID
+    (28) list_var -> . ID COMMA list_var
+    (29) list_var -> . ID LCROCHET RCROCHET
+    (30) list_var -> . ID LCROCHET RCROCHET COMMA list_var
+
+    ID              shift and go to state 80
+
+    list_var                       shift and go to state 136
+
+state 114
+
+    (5) function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 137
+
+
+state 115
+
+    (7) function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .
+
+    $end            reduce using rule 7 (function_main -> type idmain LPAREN RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .)
+
+
+state 116
+
+    (32) roteurexp -> RETOUR expression_op . ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    ENDLINE         shift and go to state 138
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 117
+
+    (38) expression -> ID AFFECT expression_op ENDLINE .
+
+    ID              reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    SI              reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    TANTQUE         reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    LIRE            reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    ECRIRE          reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    RSEPARATEUR     reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+    RETOUR          reduce using rule 38 (expression -> ID AFFECT expression_op ENDLINE .)
+
+
+state 118
+
+    (59) expression_op -> LPAREN expression_op . RPAREN
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    RPAREN          shift and go to state 128
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 119
+
+    (37) expression -> ID LCROCHET expression_op RCROCHET . AFFECT expression_fcall
+    (39) expression -> ID LCROCHET expression_op RCROCHET . AFFECT expression_op ENDLINE
+
+    AFFECT          shift and go to state 139
+
+
+state 120
+
+    (47) expression_fcall -> ID LPAREN expression_op RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 140
+
+
+state 121
+
+    (49) expression_fcall -> ID LPAREN RPAREN ENDLINE .
+
+    RSEPARATEUR     reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    RETOUR          reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    ID              reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    SI              reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    LIRE            reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 49 (expression_fcall -> ID LPAREN RPAREN ENDLINE .)
+
+
+state 122
+
+    (48) expression_fcall -> ID LPAREN string_id RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 141
+
+
+state 123
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR . expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI comparison_op ALORS LSEPARATEUR . expressions RSEPARATEUR
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    expressions                    shift and go to state 142
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 124
+
+    (53) comparison_op -> expression_op LOGC_OP expression_op .
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+  ! shift/reduce conflict for ADD_OP resolved as shift
+  ! shift/reduce conflict for MUL_OP resolved as shift
+  ! shift/reduce conflict for LOGC_OP resolved as shift
+    ALORS           reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .)
+    FAIRE           reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .)
+    ENDLINE         reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .)
+    RCROCHET        reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .)
+    RPAREN          reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .)
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+  ! LOGC_OP         [ reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .) ]
+  ! ADD_OP          [ reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .) ]
+  ! MUL_OP          [ reduce using rule 53 (comparison_op -> expression_op LOGC_OP expression_op .) ]
+
+
+state 125
+
+    (50) expression_op -> expression_op ADD_OP expression_op .
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+  ! shift/reduce conflict for ADD_OP resolved as shift
+  ! shift/reduce conflict for MUL_OP resolved as shift
+  ! shift/reduce conflict for LOGC_OP resolved as shift
+    ENDLINE         reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .)
+    RCROCHET        reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .)
+    RPAREN          reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .)
+    ALORS           reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .)
+    FAIRE           reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .)
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+  ! LOGC_OP         [ reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .) ]
+  ! ADD_OP          [ reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .) ]
+  ! MUL_OP          [ reduce using rule 50 (expression_op -> expression_op ADD_OP expression_op .) ]
+
+
+state 126
+
+    (51) expression_op -> expression_op MUL_OP expression_op .
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+  ! shift/reduce conflict for ADD_OP resolved as shift
+  ! shift/reduce conflict for MUL_OP resolved as shift
+  ! shift/reduce conflict for LOGC_OP resolved as shift
+    ENDLINE         reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .)
+    RCROCHET        reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .)
+    RPAREN          reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .)
+    ALORS           reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .)
+    FAIRE           reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .)
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+  ! LOGC_OP         [ reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .) ]
+  ! ADD_OP          [ reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .) ]
+  ! MUL_OP          [ reduce using rule 51 (expression_op -> expression_op MUL_OP expression_op .) ]
+
+
+state 127
+
+    (54) comparison_op -> LPAREN comparison_op RPAREN .
+
+    ALORS           reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    LOGC_OP         reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    ADD_OP          reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    MUL_OP          reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    FAIRE           reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    ENDLINE         reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    RCROCHET        reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+    RPAREN          reduce using rule 54 (comparison_op -> LPAREN comparison_op RPAREN .)
+
+
+state 128
+
+    (59) expression_op -> LPAREN expression_op RPAREN .
+
+    LOGC_OP         reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    ADD_OP          reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    MUL_OP          reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    ENDLINE         reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    RCROCHET        reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    RPAREN          reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    ALORS           reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+    FAIRE           reduce using rule 59 (expression_op -> LPAREN expression_op RPAREN .)
+
+
+state 129
+
+    (55) expression_op -> ID COMMA expression_op .
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+  ! shift/reduce conflict for ADD_OP resolved as shift
+  ! shift/reduce conflict for MUL_OP resolved as shift
+  ! shift/reduce conflict for LOGC_OP resolved as shift
+    ENDLINE         reduce using rule 55 (expression_op -> ID COMMA expression_op .)
+    RCROCHET        reduce using rule 55 (expression_op -> ID COMMA expression_op .)
+    RPAREN          reduce using rule 55 (expression_op -> ID COMMA expression_op .)
+    ALORS           reduce using rule 55 (expression_op -> ID COMMA expression_op .)
+    FAIRE           reduce using rule 55 (expression_op -> ID COMMA expression_op .)
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+  ! LOGC_OP         [ reduce using rule 55 (expression_op -> ID COMMA expression_op .) ]
+  ! ADD_OP          [ reduce using rule 55 (expression_op -> ID COMMA expression_op .) ]
+  ! MUL_OP          [ reduce using rule 55 (expression_op -> ID COMMA expression_op .) ]
+
+
+state 130
+
+    (56) expression_op -> number COMMA expression_op .
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+  ! shift/reduce conflict for ADD_OP resolved as shift
+  ! shift/reduce conflict for MUL_OP resolved as shift
+  ! shift/reduce conflict for LOGC_OP resolved as shift
+    ENDLINE         reduce using rule 56 (expression_op -> number COMMA expression_op .)
+    RCROCHET        reduce using rule 56 (expression_op -> number COMMA expression_op .)
+    RPAREN          reduce using rule 56 (expression_op -> number COMMA expression_op .)
+    ALORS           reduce using rule 56 (expression_op -> number COMMA expression_op .)
+    FAIRE           reduce using rule 56 (expression_op -> number COMMA expression_op .)
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+  ! LOGC_OP         [ reduce using rule 56 (expression_op -> number COMMA expression_op .) ]
+  ! ADD_OP          [ reduce using rule 56 (expression_op -> number COMMA expression_op .) ]
+  ! MUL_OP          [ reduce using rule 56 (expression_op -> number COMMA expression_op .) ]
+
+
+state 131
+
+    (42) expression -> TANTQUE comparison_op FAIRE LSEPARATEUR . expressions RSEPARATEUR
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    expressions                    shift and go to state 143
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 132
+
+    (43) expression -> LIRE LPAREN identifiant RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 144
+
+
+state 133
+
+    (44) expression -> ECRIRE LPAREN expression_op RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 145
+
+
+state 134
+
+    (45) expression -> ECRIRE LPAREN string_id RPAREN . ENDLINE
+
+    ENDLINE         shift and go to state 146
+
+
+state 135
+
+    (29) list_var -> ID LCROCHET RCROCHET .
+    (30) list_var -> ID LCROCHET RCROCHET . COMMA list_var
+
+    ENDLINE         reduce using rule 29 (list_var -> ID LCROCHET RCROCHET .)
+    COMMA           shift and go to state 113
+
+
+state 136
+
+    (30) list_var -> ID LCROCHET RCROCHET COMMA list_var .
+
+    ENDLINE         reduce using rule 30 (list_var -> ID LCROCHET RCROCHET COMMA list_var .)
+
+
+state 137
+
+    (5) function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .
+
+    ID              reduce using rule 5 (function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .)
+    ENTIER          reduce using rule 5 (function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .)
+    MAIN            reduce using rule 5 (function -> type identifiant LPAREN arguments RPAREN declarations LSEPARATEUR bodyexp roteurexp RSEPARATEUR .)
+
+
+state 138
+
+    (32) roteurexp -> RETOUR expression_op ENDLINE .
+
+    RSEPARATEUR     reduce using rule 32 (roteurexp -> RETOUR expression_op ENDLINE .)
+
+
+state 139
+
+    (37) expression -> ID LCROCHET expression_op RCROCHET AFFECT . expression_fcall
+    (39) expression -> ID LCROCHET expression_op RCROCHET AFFECT . expression_op ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (50) expression_op -> . expression_op ADD_OP expression_op
+    (51) expression_op -> . expression_op MUL_OP expression_op
+    (52) expression_op -> . comparison_op
+    (55) expression_op -> . ID COMMA expression_op
+    (56) expression_op -> . number COMMA expression_op
+    (57) expression_op -> . ID
+    (58) expression_op -> . number
+    (59) expression_op -> . LPAREN expression_op RPAREN
+    (53) comparison_op -> . expression_op LOGC_OP expression_op
+    (54) comparison_op -> . LPAREN comparison_op RPAREN
+    (60) number -> . ADD_OP NUMBER
+    (61) number -> . NUMBER
+
+    ID              shift and go to state 88
+    LPAREN          shift and go to state 91
+    ADD_OP          shift and go to state 21
+    NUMBER          shift and go to state 22
+
+    expression_op                  shift and go to state 147
+    expression_fcall               shift and go to state 148
+    comparison_op                  shift and go to state 92
+    number                         shift and go to state 76
+
+state 140
+
+    (47) expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .
+
+    RSEPARATEUR     reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    RETOUR          reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    ID              reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    SI              reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    LIRE            reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 47 (expression_fcall -> ID LPAREN expression_op RPAREN ENDLINE .)
+
+
+state 141
+
+    (48) expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .
+
+    RSEPARATEUR     reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    RETOUR          reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    ID              reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    SI              reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    LIRE            reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 48 (expression_fcall -> ID LPAREN string_id RPAREN ENDLINE .)
+
+
+state 142
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions . RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI comparison_op ALORS LSEPARATEUR expressions . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 149
+
+
+state 143
+
+    (42) expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 150
+
+
+state 144
+
+    (43) expression -> LIRE LPAREN identifiant RPAREN ENDLINE .
+
+    ID              reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    SI              reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    LIRE            reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    RSEPARATEUR     reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+    RETOUR          reduce using rule 43 (expression -> LIRE LPAREN identifiant RPAREN ENDLINE .)
+
+
+state 145
+
+    (44) expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .
+
+    ID              reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    SI              reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    LIRE            reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    RSEPARATEUR     reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+    RETOUR          reduce using rule 44 (expression -> ECRIRE LPAREN expression_op RPAREN ENDLINE .)
+
+
+state 146
+
+    (45) expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .
+
+    ID              reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    SI              reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    TANTQUE         reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    LIRE            reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    ECRIRE          reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    RSEPARATEUR     reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+    RETOUR          reduce using rule 45 (expression -> ECRIRE LPAREN string_id RPAREN ENDLINE .)
+
+
+state 147
+
+    (39) expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op . ENDLINE
+    (50) expression_op -> expression_op . ADD_OP expression_op
+    (51) expression_op -> expression_op . MUL_OP expression_op
+    (53) comparison_op -> expression_op . LOGC_OP expression_op
+
+    ENDLINE         shift and go to state 151
+    ADD_OP          shift and go to state 100
+    MUL_OP          shift and go to state 101
+    LOGC_OP         shift and go to state 99
+
+
+state 148
+
+    (37) expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .
+
+    ID              reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    SI              reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    TANTQUE         reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    LIRE            reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    ECRIRE          reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    RSEPARATEUR     reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+    RETOUR          reduce using rule 37 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_fcall .)
+
+
+state 149
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR . SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .
+
+    SINON           shift and go to state 152
+    ID              reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    SI              reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    TANTQUE         reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    LIRE            reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    ECRIRE          reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    RSEPARATEUR     reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+    RETOUR          reduce using rule 41 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR .)
+
+
+state 150
+
+    (42) expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .
+
+    ID              reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    SI              reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    TANTQUE         reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    LIRE            reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    ECRIRE          reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    RSEPARATEUR     reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+    RETOUR          reduce using rule 42 (expression -> TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR .)
+
+
+state 151
+
+    (39) expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .
+
+    ID              reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    SI              reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    TANTQUE         reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    LIRE            reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    ECRIRE          reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    RSEPARATEUR     reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+    RETOUR          reduce using rule 39 (expression -> ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE .)
+
+
+state 152
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON . LSEPARATEUR expressions RSEPARATEUR
+
+    LSEPARATEUR     shift and go to state 153
+
+
+state 153
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR . expressions RSEPARATEUR
+    (33) expressions -> . expression expressions
+    (34) expressions -> . expression_fcall
+    (35) expressions -> . EPSILON
+    (36) expression -> . ID AFFECT expression_fcall
+    (37) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_fcall
+    (38) expression -> . ID AFFECT expression_op ENDLINE
+    (39) expression -> . ID LCROCHET expression_op RCROCHET AFFECT expression_op ENDLINE
+    (40) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR
+    (41) expression -> . SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR
+    (42) expression -> . TANTQUE comparison_op FAIRE LSEPARATEUR expressions RSEPARATEUR
+    (43) expression -> . LIRE LPAREN identifiant RPAREN ENDLINE
+    (44) expression -> . ECRIRE LPAREN expression_op RPAREN ENDLINE
+    (45) expression -> . ECRIRE LPAREN string_id RPAREN ENDLINE
+    (47) expression_fcall -> . ID LPAREN expression_op RPAREN ENDLINE
+    (48) expression_fcall -> . ID LPAREN string_id RPAREN ENDLINE
+    (49) expression_fcall -> . ID LPAREN RPAREN ENDLINE
+    (19) EPSILON -> .
+
+    ID              shift and go to state 55
+    SI              shift and go to state 56
+    TANTQUE         shift and go to state 57
+    LIRE            shift and go to state 58
+    ECRIRE          shift and go to state 59
+    RSEPARATEUR     reduce using rule 19 (EPSILON -> .)
+
+    expressions                    shift and go to state 154
+    expression                     shift and go to state 52
+    expression_fcall               shift and go to state 53
+    EPSILON                        shift and go to state 54
+
+state 154
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions . RSEPARATEUR
+
+    RSEPARATEUR     shift and go to state 155
+
+
+state 155
+
+    (40) expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .
+
+    ID              reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    SI              reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    TANTQUE         reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    LIRE            reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    ECRIRE          reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    RSEPARATEUR     reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+    RETOUR          reduce using rule 40 (expression -> SI comparison_op ALORS LSEPARATEUR expressions RSEPARATEUR SINON LSEPARATEUR expressions RSEPARATEUR .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for RPAREN in state 102 resolved as shift
+WARNING: shift/reduce conflict for ADD_OP in state 124 resolved as shift
+WARNING: shift/reduce conflict for MUL_OP in state 124 resolved as shift
+WARNING: shift/reduce conflict for LOGC_OP in state 124 resolved as shift
+WARNING: shift/reduce conflict for ADD_OP in state 125 resolved as shift
+WARNING: shift/reduce conflict for MUL_OP in state 125 resolved as shift
+WARNING: shift/reduce conflict for LOGC_OP in state 125 resolved as shift
+WARNING: shift/reduce conflict for ADD_OP in state 126 resolved as shift
+WARNING: shift/reduce conflict for MUL_OP in state 126 resolved as shift
+WARNING: shift/reduce conflict for LOGC_OP in state 126 resolved as shift
+WARNING: shift/reduce conflict for ADD_OP in state 129 resolved as shift
+WARNING: shift/reduce conflict for MUL_OP in state 129 resolved as shift
+WARNING: shift/reduce conflict for LOGC_OP in state 129 resolved as shift
+WARNING: shift/reduce conflict for ADD_OP in state 130 resolved as shift
+WARNING: shift/reduce conflict for MUL_OP in state 130 resolved as shift
+WARNING: shift/reduce conflict for LOGC_OP in state 130 resolved as shift

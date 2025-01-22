@@ -1,0 +1,17 @@
+
+main(){
+
+    a = 1;
+    b = 2;
+    ecrire(a);
+    tanque a <= 1 faire {
+        si a < b & a > b | a==b alors{
+            ecrire(1);
+        }sinon {
+            ecrire(2);
+        }  
+        a = a + 1;
+    }
+
+}
+

@@ -1,0 +1,7 @@
+main()               
+entier a,entier b;           
+{
+  lire(a);
+  a = (a+ 2);       
+  ecrire(a + 1);     
+}

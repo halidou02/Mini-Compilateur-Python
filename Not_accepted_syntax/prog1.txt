@@ -1,0 +1,16 @@
+
+main()               
+entier a;           
+{
+  lire(a>);
+  a = (a+ 2);       
+  ecrire(a + 1);     
+}
+
+
+
+
+
+
+
+

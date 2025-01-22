@@ -1,0 +1,9 @@
+main()               
+entier a;           
+{
+  a = 10;
+  tanque a < 10 faire{
+    a = a + 1;
+  }   
+  ecrire(a);
+}

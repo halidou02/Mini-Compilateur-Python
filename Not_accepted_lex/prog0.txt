@@ -1,0 +1,15 @@
+
+main()               
+8entiere d;           
+{
+  d =& 4;   
+  ecrire(d);     
+}
+
+
+
+
+
+
+
+

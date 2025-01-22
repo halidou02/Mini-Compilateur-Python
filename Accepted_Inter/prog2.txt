@@ -1,0 +1,11 @@
+main()               
+entier a,b;           
+{
+  a = 1;
+  b = 1;
+  tanque (!(a > 10 | b >= 5)) faire{
+    a = a + 1;
+    b = b + 1;
+  }
+  ecrire(a);
+}

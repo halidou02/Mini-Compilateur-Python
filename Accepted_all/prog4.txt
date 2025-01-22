@@ -1,0 +1,27 @@
+main()               
+entier a,b;           
+{
+  lire(a);
+  lire(b);
+  tantque b < 10 faire
+  { 
+    ecrire(b);
+    b=b+1;
+    si a == 2 alors
+    {
+      ecrire( 'a=2');
+    }
+    sinon{
+      ecrire( 'a not 2');
+
+    }
+  }   
+}
+
+
+
+
+
+
+
+

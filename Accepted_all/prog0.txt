@@ -1,0 +1,13 @@
+main()               
+entier d[],a[];      
+{
+  a = 0;
+  tantque(a < 10)faire{
+    si(a == 2)alors{
+      ecrire(a);
+    }sinon{
+      ecrire('not a');
+    }
+    a = a + 1;
+  }
+}

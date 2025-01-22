@@ -1,0 +1,8 @@
+main()               
+entier a,b;           
+{
+  lire(a); # this is a comments
+  lire(b);
+  a = (a+ b);       
+  ecrire(a );     
+}
